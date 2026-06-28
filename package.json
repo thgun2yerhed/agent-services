@@ -1,0 +1,18 @@
+{
+  "name": "agent-services",
+  "version": "1.0.0",
+  "description": "Micro-services for Agent_s_Intelligence_Kiosk on ACP",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
