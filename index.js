@@ -1,9 +1,14 @@
 import express from 'express';
 import cors from 'cors';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
 const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static(__dirname));
 
 // Simple in-memory cache for token data
 const tokenCache = {
@@ -62,7 +67,7 @@ app.post('/api/services/gas_estimate_check', (req, res) => {
   };
 
   const baseGas = gasEstimates[transaction_type.toLowerCase()] || 100000;
-  const gweiBump = chain_id === '8453' ? 1.5 : 1.2; // Base vs other chains
+  const gweiBump = chain_id === '8453' ? 1.5 : 1.2;
   const estimatedGwei = (baseGas / 1e9 * gweiBump).toFixed(4);
 
   res.json({
